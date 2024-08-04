@@ -1,0 +1,15 @@
+{
+    "baeUrl"                :"https://www.saucedemo.com",
+    "validUser"             : "standard_user",
+    "password"              : "secret_sauce",
+    "homePageUrl"           :"https://www.saucedemo.com/inventory.html",
+    "sortByProceHighToLow"  :"Price (high to low)",
+    "sortByProceLowToHigh"  :"Price (low to high)",
+    "sortByNameAtoZ"        :"Name (A to Z)",
+    "sortByNameZtoA"        :"Name (Z to A)",
+    "numberOfItems"         :3,
+    "firstName"             :"QA",
+    "lastName"              :"Task",
+    "postalCode"            :"12345",
+    "totalPrice"            :"103.6"
+}
