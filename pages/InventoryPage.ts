@@ -27,10 +27,10 @@ export class InventoryPage {
     await this.shoppingCartButton.click();
   }
 
-  async addBackPack(itemNumber: number, sortBy: string) {
-    // we can use this function for diferent numbers of item not only the 3 fist items, also we can choose to sort them by all possible options
 
-    let itemsName :string[] =[];
+  async SortItems(sortBy: string) {
+    //we can choose to sort items them by all possible options
+
     switch (sortBy){
       case "Price (high to low)":
         await this.productSort.selectOption({value:"hilo"});
@@ -48,17 +48,21 @@ export class InventoryPage {
         break
     }  
     await this.activeSort.waitFor({ state: 'visible' });
-    expect(this.activeSort).toHaveText(sortBy);
+    
+  }
 
+
+  async addBackPack(itemNumber: number, sortBy: string) {
+    // we can use this function for diferent numbers of item not only the 3 fist items
+    this.SortItems(sortBy)
+    expect(this.activeSort).toHaveText(sortBy);
+    let itemsName :string[] =[];
     for (let i=0;i< itemNumber;i++){
     await this.addTocart.first().click();
     const itemName = await this.itemName.nth(i).textContent();
     itemsName = itemsName.concat(itemName);
     }
-    
     return itemsName;
-    
-
   }
 
   /**
@@ -68,4 +72,10 @@ export class InventoryPage {
    * those 3 products should be the high-price prodcuts.
    * Challenge accepted? then you will get bonus points for reusability ;)
    */
+
+  async problemSortItem( sortBy: string) {
+    // we can use this function for diferent numbers of item not only the 3 fist items
+    this.SortItems(sortBy)
+    expect(this.activeSort).not.toHaveText(sortBy);
+  }
 }

@@ -3,13 +3,16 @@
     "validUser"             : "standard_user",
     "password"              : "secret_sauce",
     "homePageUrl"           :"https://www.saucedemo.com/inventory.html",
-    "sortByProceHighToLow"  :"Price (high to low)",
-    "sortByProceLowToHigh"  :"Price (low to high)",
+    "sortByPriceHighToLow"  :"Price (high to low)",
+    "sortByPriceLowToHigh"  :"Price (low to high)",
     "sortByNameAtoZ"        :"Name (A to Z)",
     "sortByNameZtoA"        :"Name (Z to A)",
     "numberOfItems"         :3,
     "firstName"             :"QA",
     "lastName"              :"Task",
     "postalCode"            :"12345",
-    "totalPrice"            :"103.65"
+    "totalPrice"            :"103.65",
+    "blockedOutUser"        :"locked_out_user",
+    "lockedOutMessage"      :"Epic sadface: Sorry, this user has been locked out.",
+    "problemUser"           :"problem_user"
 }

@@ -35,7 +35,7 @@ test.describe("Swag Labs Tests ", () => {
     await loginPage.navigateToWebsite(data.baeUrl);
     await loginPage.login(data.validUser,data.password);
     expect(page.url()).toBe(data.homePageUrl);
-    const itemsNames= await inventoryPage.addBackPack(data.numberOfItems,data.sortByProceHighToLow);
+    const itemsNames= await inventoryPage.addBackPack(data.numberOfItems,data.sortByPriceHighToLow);
     await inventoryPage.gotoShoppingCart();
     await cartPage.verifyItemInCart(itemsNames, data.numberOfItems); //You got it right ? :)
     await cartPage.gotoCheckout();
@@ -52,4 +52,17 @@ test.describe("Swag Labs Tests ", () => {
      * Show us your test automation creativity!
      */
   });
+
+  test("Blocked Out User", async ({}) => {
+    await loginPage.loginLocketOutUser(data.baeUrl,data.blockedOutUser,data.password);
+  });
+
+  test("Problem User", async ({}) => {
+    await loginPage.navigateToWebsite(data.baeUrl);
+    await loginPage.login(data.problemUser,data.password);
+    expect(page.url()).toBe(data.homePageUrl);
+    await inventoryPage.problemSortItem(data.sortByPriceHighToLow)
+
+  })
+
 });

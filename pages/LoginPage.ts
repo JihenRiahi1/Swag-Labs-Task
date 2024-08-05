@@ -1,16 +1,19 @@
-import { Locator, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
+import * as data from "../tests_data/test_data.json"
 
 export class LoginPage {
   readonly page: Page;
   readonly emailInput: Locator;
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
+  readonly errorLoginMessage: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.emailInput = page.locator("#user-name");
     this.passwordInput = page.locator("#password");
     this.loginButton = page.locator("#login-button");
+    this.errorLoginMessage= page.locator("h3[data-test='error']")
 
   }
 
@@ -40,7 +43,10 @@ export class LoginPage {
     The confirmation is not here so i can use this function in other test for exemple test login with wrong user
     ##################
     */
-
-
+  }
+  async loginLocketOutUser(url: string,email: string, password: string) {
+    this.navigateToWebsite(url);
+    this.login(email,password)
+    expect(await this.errorLoginMessage.textContent()).toBe(data.lockedOutMessage);
   }
 }
