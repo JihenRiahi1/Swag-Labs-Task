@@ -14,7 +14,7 @@ Feeling overwhelmed? This checklist keeps track of your challenge progress.
 3. [x] Solve challenge 4 in `CartPage.ts` 
 4. [x] Solve challenge 5, 6 and 7 in `ChekoutPage.ts`
 5. [x] Solve challenge 9 & 10 in `playwright.config.ts`
-6. [ ] Bonus Challenge : Test different user types, enhance framework, integrate CI/CD
+6. [x] Bonus Challenge : Test different user types, enhance framework, integrate CI/CD
 
 
 Challenges 1 to 5 are mandatory challenges. Challenge 6 is an optional challenge to showcase your creativity and your problem solving skills for building a highly scalable test automation framework.
