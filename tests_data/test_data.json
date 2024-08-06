@@ -14,5 +14,11 @@
     "totalPrice"            :"103.65",
     "blockedOutUser"        :"locked_out_user",
     "lockedOutMessage"      :"Epic sadface: Sorry, this user has been locked out.",
-    "problemUser"           :"problem_user"
+    "problemUser"           :"problem_user",
+    "performanceGlitchUser" :"performance_glitch_user",
+    "errorUser"             :"error_user",
+    "visualUser"            :"visual_user",
+    "sortingErrorMessage"   :"Sorting is broken! This error has been reported to Backtrace.",
+    "transformRotation"     :"matrix(0.99863, 0.052336, -0.052336, 0.99863, 0, 0)" 
+    
 }

@@ -5,7 +5,6 @@ import { CartPage } from "../pages/CartPage";
 import { CheckoutPage } from "../pages/CheckoutPage";
 import * as data from "../tests_data/test_data.json"
 
-
 let page: Page;
 let loginPage: LoginPage;
 let inventoryPage: InventoryPage;
@@ -21,8 +20,6 @@ test.beforeEach(async ({ browser }) => {
 });
 
 test.describe("Swag Labs Tests ", () => {
-
-
 
   test("End to End scenario", async ({}) => {
     /**
@@ -43,7 +40,6 @@ test.describe("Swag Labs Tests ", () => {
     await checkoutPage.verifyTotalPrice(data.totalPrice);
     await checkoutPage.submitOrder();
     await checkoutPage.verifyOrderConfirmation();
-
     /**
      * You Conquered the basics!  Explore further for bonus points:
      *  - More test cases (users, scenarios)
@@ -61,8 +57,25 @@ test.describe("Swag Labs Tests ", () => {
     await loginPage.navigateToWebsite(data.baeUrl);
     await loginPage.login(data.problemUser,data.password);
     expect(page.url()).toBe(data.homePageUrl);
-    await inventoryPage.problemSortItem(data.sortByPriceHighToLow)
+    await inventoryPage.problemSortItem(data.sortByPriceHighToLow);
+  })
 
+  test("performance Glitch User", async ({}) => {
+      await loginPage.performanceGlitchUser();
+  })
+
+  test("Error User", async ({}) => {
+    await loginPage.navigateToWebsite(data.baeUrl);
+    await loginPage.login(data.errorUser,data.password);
+    expect(page.url()).toBe(data.homePageUrl);
+    await inventoryPage.errorSortItem(data.sortByPriceHighToLow);
+  })
+
+  test("Visual User", async ({}) => {
+    await loginPage.navigateToWebsite(data.baeUrl);
+    await loginPage.login(data.visualUser,data.password);
+    expect(page.url()).toBe(data.homePageUrl);
+    await inventoryPage.visualError();
   })
 
 });
