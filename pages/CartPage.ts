@@ -20,13 +20,11 @@ export class CartPage {
      *  Can you write some code to verify they're safely nestled in the cart?
      *  Remember your detective skills: assertions and selectors are your best friends!
      */
-    expect(await this.numberOfItemsInCart.textContent()).toBe(String(itemNumber))
+    expect(await this.numberOfItemsInCart.textContent()).toBe(String(itemNumber)) 
     for (let index=0;index< itemNumber;index++) {
       const itemInCart = await this.itemName.nth(index).textContent()
       expect(itemsName).toContain(itemInCart)
     }
-
-
   }
 
   async gotoCheckout() {

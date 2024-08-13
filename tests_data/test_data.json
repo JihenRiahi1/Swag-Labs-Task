@@ -19,6 +19,7 @@
     "errorUser"             :"error_user",
     "visualUser"            :"visual_user",
     "sortingErrorMessage"   :"Sorting is broken! This error has been reported to Backtrace.",
-    "transformRotation"     :"matrix(0.99863, 0.052336, -0.052336, 0.99863, 0, 0)" 
+    "transformRotation"     :"matrix(0.99863, 0.052336, -0.052336, 0.99863, 0, 0)",
+    "cartPostion"            :"{ height: '40px', width: '40px', top: '10px', right: '20px' }"
     
 }

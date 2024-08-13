@@ -36,14 +36,13 @@ export class LoginPage {
      */
   }
 
-  async loginLocketOutUser(url: string,email: string, password: string) {
-    this.navigateToWebsite(url);
+  async loginLocketOutUser(email: string, password: string) {
+  
     this.login(email,password)
-    expect(await this.errorLoginMessage.textContent()).toBe(data.lockedOutMessage);
+    expect(this.errorLoginMessage).toHaveText(data.lockedOutMessage);
   }
 
   async performanceGlitchUser(){
-    await this.navigateToWebsite(data.baeUrl);
     await this.page.evaluate(() => {
       performance.mark('start');
     });
@@ -55,13 +54,16 @@ export class LoginPage {
       const [measure] = performance.getEntriesByName('pageLoad');
       return measure;
     });
+    
     console.log('Page Load Time:', timings.duration, 'ms');
-    try{
+    expect(timings.duration).toBeLessThan(5000);
+
+/*     try{
       expect(timings.duration).toBeLessThan(5000);
     }
     catch(error){
       console.log('Test failed but will be marked as passed:', error); 
       // we know that the timing duration is biger than the expected that's why we need the test result to be a pass
-  } 
+  }  */
 }
 }

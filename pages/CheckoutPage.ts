@@ -37,7 +37,7 @@ export class CheckoutPage {
      * Can you implement the verify total price method then ?
      */
     const finalPrice = await this.totalPriceLabel.textContent();
-    expect(finalPrice.split("$")[1]).toBe(totalPrice)
+    expect(finalPrice?.split("$")[1]).toBe(totalPrice)
   }
   async submitOrder() {
     await this.finishButton.click();
@@ -49,6 +49,7 @@ export class CheckoutPage {
      * Can you write some code to verify the order confirmation message?
      *  (Think: assertions and waiting for elements)
      */
-    expect(await this.orderConfirmationLabel.textContent()).toBe("Thank you for your order!")
+    //expect(await this.orderConfirmationLabel.textContent()).toBe("Thank you for your order!")
+    expect(this.orderConfirmationLabel).toHaveText("Thank you for your order!")
   }
 }

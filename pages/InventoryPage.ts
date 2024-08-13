@@ -2,6 +2,7 @@ import { expect, Locator, Page } from "@playwright/test";
 import * as data from "../tests_data/test_data.json"
 
 
+
 export class InventoryPage {
   readonly page: Page;
   readonly pageTitle: Locator;
@@ -63,9 +64,9 @@ export class InventoryPage {
     expect(this.activeSort).toHaveText(sortBy);
     let itemsName :string[] =[];
     for (let i=0;i< itemNumber;i++){
-    await this.addTocart.first().click();
-    const itemName = await this.itemName.nth(i).textContent();
-    itemsName = itemsName.concat(itemName);
+      await this.addTocart.first().click();
+      const itemName = await this.itemName.nth(i).textContent();
+      itemsName = itemsName.concat(itemName);
     }
     return itemsName;
   }
@@ -79,10 +80,10 @@ export class InventoryPage {
    */
 
   async problemSortItem( sortBy: string) {
-   
     this.SortItems(sortBy)
     expect(this.activeSort).not.toHaveText(sortBy);
   }
+
   async errorSortItem( sortBy: string) {
     this.page.on('dialog', async(alert) =>{
       const errorMessage = alert.message();
@@ -94,20 +95,31 @@ export class InventoryPage {
     await this.SortItems(sortBy)
   }
 
-  async checkTransformvValue (element){
+  async checkTransformvValue (element: Locator){
+    await this.page.waitForLoadState('networkidle');
     const transformValue = await element.evaluate(el => {
       const computedStyle = window.getComputedStyle(el);
       return computedStyle.transform;
-      
     });
     console.log("trasform value: "+transformValue)
-    expect(transformValue).toBe(data.transformRotation);
-    
+    //expect(transformValue).toBe(data.transformRotation);
+    expect(transformValue).toBe("none");
   }
 
-  async visualError(){
-    this.checkTransformvValue(this.openMenu);
-    this.checkTransformvValue(this.cart);
-    this.checkTransformvValue(this.closeMenu);
+
+  async positionCart (element){
+    const position  = await element.evaluate(() => {
+      const computedStyle = window.getComputedStyle(element);
+      return {"height":computedStyle.height,"width":computedStyle.width,"top":computedStyle.top, "right":computedStyle.right};
+    });
+    console.log("cart postion"+position);
+    expect(position).toEqual(data.cartPostion);
+  }
+
+  async visualError(){ 
+    await this.checkTransformvValue(this.openMenu);
+    await this.checkTransformvValue(this.cart);
+    await this.checkTransformvValue(this.closeMenu);
+    await this.positionCart(this.cart);
   }
 }

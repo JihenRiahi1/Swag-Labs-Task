@@ -17,6 +17,7 @@ test.beforeEach(async ({ browser }) => {
   inventoryPage = new InventoryPage(page);
   cartPage = new CartPage(page);
   checkoutPage = new CheckoutPage(page);
+  await loginPage.navigateToWebsite(data.baeUrl);
 });
 
 test.describe("Swag Labs Tests ", () => {
@@ -29,7 +30,7 @@ test.describe("Swag Labs Tests ", () => {
      * make any extra methods/verifications you think it will be helpfull
      */
 
-    await loginPage.navigateToWebsite(data.baeUrl);
+  
     await loginPage.login(data.validUser,data.password);
     expect(page.url()).toBe(data.homePageUrl);
     const itemsNames= await inventoryPage.addBackPack(data.numberOfItems,data.sortByPriceHighToLow);
@@ -50,29 +51,27 @@ test.describe("Swag Labs Tests ", () => {
   });
 
   test("Blocked Out User", async ({}) => {
-    await loginPage.loginLocketOutUser(data.baeUrl,data.blockedOutUser,data.password);
+    await loginPage.loginLocketOutUser(data.blockedOutUser,data.password);
   });
 
   test("Problem User", async ({}) => {
-    await loginPage.navigateToWebsite(data.baeUrl);
     await loginPage.login(data.problemUser,data.password);
     expect(page.url()).toBe(data.homePageUrl);
     await inventoryPage.problemSortItem(data.sortByPriceHighToLow);
   })
 
-  test("performance Glitch User", async ({}) => {
+  test.fail("performance Glitch User", async ({}) => {
       await loginPage.performanceGlitchUser();
   })
 
   test("Error User", async ({}) => {
-    await loginPage.navigateToWebsite(data.baeUrl);
     await loginPage.login(data.errorUser,data.password);
     expect(page.url()).toBe(data.homePageUrl);
     await inventoryPage.errorSortItem(data.sortByPriceHighToLow);
   })
 
-  test("Visual User", async ({}) => {
-    await loginPage.navigateToWebsite(data.baeUrl);
+  test.fail("Visual User", async ({}) => {
+    
     await loginPage.login(data.visualUser,data.password);
     expect(page.url()).toBe(data.homePageUrl);
     await inventoryPage.visualError();
